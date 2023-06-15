@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-signin-scope" content="profile email" />
+    <meta
+      name="google-signin-client_id"
+      content="276686089603-or9q50207fadva777v9nvotino4h22nm.apps.googleusercontent.com"
+    />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <title>Signup Today! | Dad Joke Generator</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <body class="bg-slate-100">
+      <div
+        class="h-screen flex justify-center items-center flex-col w-1/2 mx-auto text-center"
+      >
+        <h1 class="text-3xl pb-5">Sign Up</h1>
+        <p>
+          <a
+            class="text-white py-2 px-12 bg-teal-500 rounded-lg hover:bg-teal-800 cursor-pointer transition-all ease-in-out"
+            href="/"
+            >Login</a
+          >
+        </p>
+        <div
+          class="g-signin2"
+          data-onsuccess="onSignIn"
+          data-theme="dark"
+        ></div>
+
+        <a href="#" onclick="signOut();">Sign out</a>
+
+        <script>
+          function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+
+            console.log('Name: ' + profile.getName());
+
+            console.log('Image URL: ' + profile.getImageUrl());
+
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+          }
+
+          function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+
+            auth2.signOut().then(function () {
+              console.log('User signed out.');
+            });
+          }
+        </script>
+      </div>
+    </body>
+  </body>
+</html>
